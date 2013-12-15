@@ -313,7 +313,7 @@ void mdaDX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
   float o, x, e, mw=MW, w=rich, m=modmix;
   int32_t k=K;
 
-  LV2_Atom_Event* ev = lv2_atom_sequence_begin(&eventInput->body);
+  const LV2_Atom_Event* ev = lv2_atom_sequence_begin(&eventInput->body);
   bool end = lv2_atom_sequence_is_end(&eventInput->body, eventInput->atom.size, ev);
   if(activevoices>0 || !end) //detect & bypass completely empty blocks
   {

@@ -1,8 +1,9 @@
 mda-lv2 (1.1.0) unstable;
 
   * Fix tuning of Piano and EPiano at sample rates other than 44.1 kHz
+  * Fix const-violating casts
 
- -- David Robillard <d@drobilla.net>  Fri, 22 Feb 2013 21:43:47 -0500
+ -- David Robillard <d@drobilla.net>  Sun, 15 Dec 2013 17:26:47 -0500
 
 mda-lv2 (1.0.0) stable;
 

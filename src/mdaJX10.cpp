@@ -447,7 +447,7 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
   pwm = 1.0f + vib * (modwhl + pwmdep);           //below triggers on k was too cheap!
   vib = 1.0f + vib * (modwhl + vibrato);
 
-  LV2_Atom_Event* ev = lv2_atom_sequence_begin(&eventInput->body);
+  const LV2_Atom_Event* ev = lv2_atom_sequence_begin(&eventInput->body);
   bool end = lv2_atom_sequence_is_end(&eventInput->body, eventInput->atom.size, ev);
   if(activevoices>0 || !end)
   {    
