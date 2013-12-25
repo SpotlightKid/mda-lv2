@@ -22,7 +22,7 @@ def configure(conf):
     conf.line_just = 23
     autowaf.display_header('MDA.lv2 Configuration')
 
-    autowaf.check_pkg(conf, 'lv2', atleast_version='1.0.0', uselib_store='LV2')
+    autowaf.check_pkg(conf, 'lv2', atleast_version='1.2.0', uselib_store='LV2')
 
     autowaf.display_msg(conf, "LV2 bundle directory",
                         conf.env.LV2DIR)
