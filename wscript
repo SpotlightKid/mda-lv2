@@ -4,10 +4,10 @@ import re
 import shutil
 import waflib.extras.autowaf as autowaf
 
-MDA_VERSION = '1.1.0'
+MDA_VERSION = '1.2.0'
 
 # Mandatory waf variables
-APPNAME = 'MDA'        # Package name for waf dist
+APPNAME = 'mda-lv2'    # Package name for waf dist
 VERSION = MDA_VERSION  # Package version for waf dist
 top     = '.'          # Source directory
 out     = 'build'      # Build directory
