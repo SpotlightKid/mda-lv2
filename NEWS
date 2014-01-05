@@ -1,3 +1,9 @@
+mda-lv2 (1.2.2) stable;
+
+  * Fix compilation against LV2 < 1.8.0
+
+ -- David Robillard <d@drobilla.net>  Sun, 05 Jan 2014 12:52:18 -0500
+
 mda-lv2 (1.2.0) stable;
 
   * Fix tuning of Piano and EPiano at sample rates other than 44.1 kHz

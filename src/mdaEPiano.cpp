@@ -355,7 +355,7 @@ void mdaEPiano::processReplacing(float **inputs, float **outputs, int32_t sample
   float x, l, r, od=overdrive;
   int32_t i;
 
-  const LV2_Atom_Event* ev = lv2_atom_sequence_begin(&eventInput->body);
+  LV2_Atom_Event* ev = lv2_atom_sequence_begin(&eventInput->body);
   while(frame<sampleFrames)
   {
     bool end = lv2_atom_sequence_is_end(&eventInput->body, eventInput->atom.size, ev);
