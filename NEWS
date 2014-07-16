@@ -1,3 +1,9 @@
+mda-lv2 (1.2.3) unstable;
+
+  * Fix initial noise with Piano (zero comb filter and voices on startup)
+
+ -- David Robillard <d@drobilla.net>  Tue, 15 Jul 2014 23:25:05 -0400
+
 mda-lv2 (1.2.2) stable;
 
   * Fix compilation against LV2 < 1.8.0

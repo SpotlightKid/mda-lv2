@@ -108,6 +108,7 @@ mdaPiano::mdaPiano(audioMasterCallback audioMaster) : AudioEffectX(audioMaster, 
   //initialise...
   for(int32_t v=0; v<NVOICES; v++)
   {
+    memset(&voice[v], 0, sizeof(voice[v]));
     voice[v].env = 0.0f;
     voice[v].dec = 0.99f; //all notes off
   }
@@ -115,6 +116,7 @@ mdaPiano::mdaPiano(audioMasterCallback audioMaster) : AudioEffectX(audioMaster, 
   muff = 160.0f;
   cpos = sustain = activevoices = 0;
   comb = new float[256];
+  memset(comb, 0, sizeof(float) * 256);
 
   guiUpdate = 0;
 
