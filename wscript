@@ -24,8 +24,7 @@ def configure(conf):
 
     autowaf.check_pkg(conf, 'lv2', atleast_version='1.2.0', uselib_store='LV2')
 
-    autowaf.display_msg(conf, "LV2 bundle directory",
-                        conf.env.LV2DIR)
+    autowaf.display_msg(conf, "LV2 bundle directory", conf.env.LV2DIR)
     print('')
 
 def build(bld):
