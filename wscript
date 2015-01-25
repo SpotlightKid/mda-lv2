@@ -14,11 +14,13 @@ out     = 'build'      # Build directory
 
 def options(opt):
     opt.load('compiler_cxx')
+    opt.load('lv2')
     autowaf.set_options(opt)
 
 def configure(conf):
     conf.line_just = 23
     conf.load('compiler_cxx')
+    conf.load('lv2')
     autowaf.configure(conf)
     autowaf.display_header('MDA.lv2 Configuration')
 
