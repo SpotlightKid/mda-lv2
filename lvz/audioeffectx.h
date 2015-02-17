@@ -149,4 +149,3 @@ AudioEffectX* lvz_new_audioeffectx();
 }
 
 #endif // LVZ_AUDIOEFFECTX_H
-
