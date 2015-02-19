@@ -769,7 +769,7 @@ mdapset:ThruZero-mad-modulator
 	lv2:appliesTo mda:ThruZero ;
 	rdfs:seeAlso <ThruZero-presets.ttl> .
 
-mdapset:Vocoder-vocoder
+mdapset:Vocoder-default
 	a pset:Preset ;
 	lv2:appliesTo mda:Vocoder ;
 	rdfs:seeAlso <Vocoder-presets.ttl> .
