@@ -54,17 +54,17 @@ mdaJX10Program::mdaJX10Program()
   param[14] = 0.25f; //VCF Rel
 
   param[15] = 0.00f; //ENV Att
-	param[16] = 0.50f; //ENV Dec
+  param[16] = 0.50f; //ENV Dec
   param[17] = 1.00f; //ENV Sus
-	
+
   param[18] = 0.30f; //ENV Rel
-	param[19] = 0.81f; //LFO Rate
-	param[20] = 0.50f; //Vibrato
-  
+  param[19] = 0.81f; //LFO Rate
+  param[20] = 0.50f; //Vibrato
+
   param[21] = 0.00f; //Noise   - not present in original patches
   param[22] = 0.50f; //Octave
   param[23] = 0.50f; //Tuning
-  strcpy (name, "Empty Patch");  
+  strcpy (name, "Empty Patch");
 }
 
 
@@ -74,7 +74,7 @@ mdaJX10::mdaJX10(audioMasterCallback audioMaster) : AudioEffectX(audioMaster, NP
   Fs = 44100.0f;
 
   programs = new mdaJX10Program[NPROGS];
-	if(programs)
+  if(programs)
   {
     fillpatch(i++, "5th Sweep Pad", 1.0f, 0.37f, 0.25f, 0.3f, 0.32f, 0.5f, 0.9f, 0.6f, 0.12f, 0.0f, 0.5f, 0.9f, 0.89f, 0.9f, 0.73f, 0.0f, 0.5f, 1.0f, 0.71f, 0.81f, 0.65f, 0.0f, 0.5f, 0.5f);
     fillpatch(i++, "Echo Pad [SA]", 0.88f, 0.51f, 0.5f, 0.0f, 0.49f, 0.5f, 0.46f, 0.76f, 0.69f, 0.1f, 0.69f, 1.0f, 0.86f, 0.76f, 0.57f, 0.3f, 0.8f, 0.68f, 0.66f, 0.79f, 0.13f, 0.25f, 0.45f, 0.5f);
@@ -121,33 +121,33 @@ mdaJX10::mdaJX10(audioMasterCallback audioMaster) : AudioEffectX(audioMaster, NP
     fillpatch(i++, "Ghost [SA]", 0.75f, 0.51f, 0.24f, 0.45f, 0.16f, 0.48f, 0.38f, 0.58f, 0.75f, 0.16f, 0.81f, 0.0f, 0.3f, 0.4f, 0.31f, 0.37f, 0.5f, 1.0f, 0.54f, 0.85f, 0.83f, 0.43f, 0.46f, 0.5f);
     fillpatch(i++, "Soft E.Piano", 0.31f, 0.51f, 0.43f, 0.0f, 0.35f, 0.5f, 0.34f, 0.26f, 0.53f, 0.0f, 0.63f, 0.0f, 0.22f, 0.0f, 0.39f, 0.0f, 0.8f, 0.0f, 0.44f, 0.81f, 0.51f, 0.0f, 0.5f, 0.5f);
     fillpatch(i++, "Thumb Piano", 0.72f, 0.82f, 1.0f, 0.0f, 0.35f, 0.5f, 0.37f, 0.47f, 0.54f, 0.0f, 0.5f, 0.0f, 0.45f, 0.0f, 0.39f, 0.0f, 0.39f, 0.0f, 0.48f, 0.81f, 0.6f, 0.0f, 0.71f, 0.5f);
-    fillpatch(i++, "Steel Drums [ZF]", 0.81f, 0.76f, 0.19f, 0.0f, 0.18f, 0.7f, 0.4f, 0.3f, 0.54f, 0.17f, 0.4f, 0.0f, 0.42f, 0.23f, 0.47f, 0.12f, 0.48f, 0.0f, 0.49f, 0.53f, 0.36f, 0.34f, 0.56f, 0.5f);       
-    
+    fillpatch(i++, "Steel Drums [ZF]", 0.81f, 0.76f, 0.19f, 0.0f, 0.18f, 0.7f, 0.4f, 0.3f, 0.54f, 0.17f, 0.4f, 0.0f, 0.42f, 0.23f, 0.47f, 0.12f, 0.48f, 0.0f, 0.49f, 0.53f, 0.36f, 0.34f, 0.56f, 0.5f);
+
     fillpatch(58,  "Car Horn", 0.57f, 0.49f, 0.31f, 0.0f, 0.35f, 0.5f, 0.46f, 0.0f, 0.68f, 0.0f, 0.5f, 0.46f, 0.3f, 1.0f, 0.23f, 0.3f, 0.5f, 1.0f, 0.31f, 1.0f, 0.38f, 0.0f, 0.5f, 0.5f);
     fillpatch(59,  "Helicopter", 0.0f, 0.25f, 0.5f, 0.0f, 0.35f, 0.5f, 0.08f, 0.36f, 0.69f, 1.0f, 0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.96f, 0.5f, 1.0f, 0.92f, 0.97f, 0.5f, 1.0f, 0.0f, 0.5f);
     fillpatch(60,  "Arctic Wind", 0.0f, 0.25f, 0.5f, 0.0f, 0.35f, 0.5f, 0.16f, 0.85f, 0.5f, 0.28f, 0.5f, 0.37f, 0.3f, 0.0f, 0.25f, 0.89f, 0.5f, 1.0f, 0.89f, 0.24f, 0.5f, 1.0f, 1.0f, 0.5f);
     fillpatch(61,  "Thip", 1.0f, 0.37f, 0.51f, 0.0f, 0.35f, 0.5f, 0.0f, 1.0f, 0.97f, 0.0f, 0.5f, 0.02f, 0.2f, 0.0f, 0.2f, 0.0f, 0.46f, 0.0f, 0.3f, 0.81f, 0.5f, 0.78f, 0.48f, 0.5f);
     fillpatch(62,  "Synth Tom", 0.0f, 0.25f, 0.5f, 0.0f, 0.76f, 0.94f, 0.3f, 0.33f, 0.76f, 0.0f, 0.68f, 0.0f, 0.59f, 0.0f, 0.59f, 0.1f, 0.5f, 0.0f, 0.5f, 0.81f, 0.5f, 0.7f, 0.0f, 0.5f);
     fillpatch(63,  "Squelchy Frog", 0.5f, 0.41f, 0.23f, 0.45f, 0.77f, 0.0f, 0.4f, 0.65f, 0.95f, 0.0f, 0.5f, 0.33f, 0.5f, 0.0f, 0.25f, 0.0f, 0.7f, 0.65f, 0.18f, 0.32f, 1.0f, 0.0f, 0.06f, 0.5f);
-    
+
     //for testing...
     //fillpatch(0, "Monosynth", 0.62f, 0.26f, 0.51f, 0.79f, 0.35f, 0.54f, 0.64f, 0.39f, 0.51f, 0.65f, 0.0f, 0.07f, 0.52f, 0.24f, 0.84f, 0.13f, 0.3f, 0.76f, 0.21f, 0.58f, 0.3f, 0.0f, 0.36f, 0.5f);
 
     setProgram(0);
   }
-		
+
   setUniqueID("mdaJX10");
 
   if(audioMaster)
-	{
-		setNumInputs(0);				
-		setNumOutputs(NOUTS);
-		canProcessReplacing();
-		isSynth();
-	}
+  {
+    setNumInputs(0);
+    setNumOutputs(NOUTS);
+    canProcessReplacing();
+    isSynth();
+  }
 
   //initialise...
-  for(int32_t v=0; v<NVOICES; v++) 
+  for(int32_t v=0; v<NVOICES; v++)
   {
     voice[v].dp   = voice[v].dp2   = 1.0f;
     voice[v].saw  = voice[v].p     = voice[v].p2    = 0.0f;
@@ -156,14 +156,14 @@ mdaJX10::mdaJX10(audioMasterCallback audioMaster) : AudioEffectX(audioMaster, NP
     voice[v].f0   = voice[v].f1    = voice[v].f2    = 0.0f;
     voice[v].note = 0;
   }
-  lfo = modwhl = filtwhl = press = fzip = 0.0f; 
+  lfo = modwhl = filtwhl = press = fzip = 0.0f;
   rezwhl = pbend = ipbend = 1.0f;
   volume = 0.0005f;
   K = mode = lastnote = sustain = activevoices = 0;
   noise = 22222;
 
   update();
-	suspend();
+  suspend();
 }
 
 
@@ -189,7 +189,7 @@ void mdaJX10::update()  //parameter change
   if(param[20]<0.5f) vibrato = 0.0f;
 
   lfoHz = (float)exp(7.0f * param[19] - 4.0f);
-  dlfo = lfoHz * (float)(ifs * TWOPI * KMAX); 
+  dlfo = lfoHz * (float)(ifs * TWOPI * KMAX);
 
   filtf = 8.0f * param[6] - 1.5f;
   filtq  = (1.0f - param[7]) * (1.0f - param[7]); ////// + 0.02f;
@@ -220,15 +220,15 @@ void mdaJX10::update()  //parameter change
 
 void mdaJX10::setSampleRate(float rate)
 {
-	AudioEffectX::setSampleRate(rate);
+  AudioEffectX::setSampleRate(rate);
   Fs = rate;
- 
-  dlfo = lfoHz * (float)(TWOPI * KMAX) / Fs; 
+
+  dlfo = lfoHz * (float)(TWOPI * KMAX) / Fs;
 }
 
 
 void mdaJX10::resume()
-{	
+{
   DECLARE_LVZ_DEPRECATED (wantEvents) ();
 }
 
@@ -237,7 +237,7 @@ void mdaJX10::suspend() //Used by Logic (have note off code in 3 places now...)
 {
   for(int32_t v=0; v<NVOICES; v++)
   {
-    voice[v].envl = voice[v].env = 0.0f; 
+    voice[v].envl = voice[v].env = 0.0f;
     voice[v].envd = 0.99f;
     voice[v].note = 0;
     voice[v].f0 = voice[v].f1 = voice[v].f2 = 0.0f;
@@ -253,7 +253,7 @@ mdaJX10::~mdaJX10()  //destroy any buffers...
 
 void mdaJX10::setProgram(int32_t program)
 {
-	curProgram = program;
+  curProgram = program;
     update();
 } //may want all notes off here - but this stops use of patches as snapshots!
 
@@ -268,9 +268,9 @@ void mdaJX10::setParameter(int32_t index, float value)
 
 
 void mdaJX10::fillpatch(int32_t p, const char *name,
-                      float p0,  float p1,  float p2,  float p3,  float p4,  float p5, 
+                      float p0,  float p1,  float p2,  float p3,  float p4,  float p5,
                       float p6,  float p7,  float p8,  float p9,  float p10, float p11,
-                      float p12, float p13, float p14, float p15, float p16, float p17, 
+                      float p12, float p13, float p14, float p15, float p16, float p17,
                       float p18, float p19, float p20, float p21, float p22, float p23)
 {
   strcpy(programs[p].name, name);
@@ -285,40 +285,40 @@ void mdaJX10::fillpatch(int32_t p, const char *name,
   programs[p].param[16] = p16;  programs[p].param[17] = p17;
   programs[p].param[18] = p18;  programs[p].param[19] = p19;
   programs[p].param[20] = p20;  programs[p].param[21] = p21;
-  programs[p].param[22] = p22;  programs[p].param[23] = p23;  
+  programs[p].param[22] = p22;  programs[p].param[23] = p23;
 }
 
 
 float mdaJX10::getParameter(int32_t index)     { return programs[curProgram].param[index]; }
 void  mdaJX10::setProgramName(char *name)   { strcpy(programs[curProgram].name, name); }
 void  mdaJX10::getProgramName(char *name)   { strcpy(name, programs[curProgram].name); }
-void  mdaJX10::setBlockSize(int32_t blockSize) {	AudioEffectX::setBlockSize(blockSize); }
+void  mdaJX10::setBlockSize(int32_t blockSize) {  AudioEffectX::setBlockSize(blockSize); }
 bool  mdaJX10::getEffectName(char* name)    { strcpy(name, "MDA JX10 Synth"); return true; }
-bool  mdaJX10::getVendorString(char* text)  {	strcpy(text, "MDA"); return true; }
+bool  mdaJX10::getVendorString(char* text)  { strcpy(text, "MDA"); return true; }
 bool  mdaJX10::getProductString(char* text) { strcpy(text, "MDA JX10 Synth"); return true; }
 
 
 bool mdaJX10::getOutputProperties(int32_t index, LvzPinProperties* properties)
 {
-	if(index<NOUTS)
-	{
-		sprintf(properties->label, "JX10%d", index + 1);
-		properties->flags = kLvzPinIsActive;
-		if(index<2) properties->flags |= kLvzPinIsStereo; //make channel 1+2 stereo
-		return true;
-	}
-	return false;
+  if(index<NOUTS)
+  {
+    sprintf(properties->label, "JX10%d", index + 1);
+    properties->flags = kLvzPinIsActive;
+    if(index<2) properties->flags |= kLvzPinIsStereo; //make channel 1+2 stereo
+    return true;
+  }
+  return false;
 }
 
 
 bool mdaJX10::getProgramNameIndexed(int32_t category, int32_t index, char* text)
 {
-	if ((unsigned int)index < NPROGS)
-	{
-		strcpy(text, programs[index].name);
-		return true;
-	}
-	return false;
+  if ((unsigned int)index < NPROGS)
+  {
+    strcpy(text, programs[index].name);
+    return true;
+  }
+  return false;
 }
 
 
@@ -329,78 +329,78 @@ bool mdaJX10::copyProgram(int32_t destination)
     programs[destination] = programs[curProgram];
     return true;
   }
-	return false;
+  return false;
 }
 
 
 int32_t mdaJX10::canDo(const char* text)
 {
-	if(!strcmp (text, "receiveLvzEvents")) return 1;
-	if(!strcmp (text, "receiveLvzMidiEvent"))	return 1;
-	return -1;
+  if(!strcmp (text, "receiveLvzEvents")) return 1;
+  if(!strcmp (text, "receiveLvzMidiEvent")) return 1;
+  return -1;
 }
 
 
 void mdaJX10::getParameterName(int32_t index, char *label)
 {
-	switch (index)
-	{
-		case  0: strcpy(label, "OSC Mix"); break;
-		case  1: strcpy(label, "OSC Tune"); break;
-		case  2: strcpy(label, "OSC Fine"); break;
-		
+  switch (index)
+  {
+    case  0: strcpy(label, "OSC Mix"); break;
+    case  1: strcpy(label, "OSC Tune"); break;
+    case  2: strcpy(label, "OSC Fine"); break;
+
     case  3: strcpy(label, "Glide"); break;
-		case  4: strcpy(label, "Gld Rate"); break;
-		case  5: strcpy(label, "Gld Bend"); break;
-		
+    case  4: strcpy(label, "Gld Rate"); break;
+    case  5: strcpy(label, "Gld Bend"); break;
+
     case  6: strcpy(label, "VCF Freq"); break;
-		case  7: strcpy(label, "VCF Reso"); break;
-		case  8: strcpy(label, "VCF Env"); break;
-		
+    case  7: strcpy(label, "VCF Reso"); break;
+    case  8: strcpy(label, "VCF Env"); break;
+
     case  9: strcpy(label, "VCF LFO"); break;
- 	  case 10: strcpy(label, "VCF Vel"); break;
- 	  case 11: strcpy(label, "VCF Att"); break;
+    case 10: strcpy(label, "VCF Vel"); break;
+    case 11: strcpy(label, "VCF Att"); break;
 
     case 12: strcpy(label, "VCF Dec"); break;
     case 13: strcpy(label, "VCF Sus"); break;
- 	  case 14: strcpy(label, "VCF Rel"); break;
- 	  
-    case 15: strcpy(label, "ENV Att"); break;
-		case 16: strcpy(label, "ENV Dec"); break;
-		case 17: strcpy(label, "ENV Sus"); break;
+    case 14: strcpy(label, "VCF Rel"); break;
 
-		case 18: strcpy(label, "ENV Rel"); break;
-		case 19: strcpy(label, "LFO Rate"); break;
-		case 20: strcpy(label, "Vibrato"); break;
+    case 15: strcpy(label, "ENV Att"); break;
+    case 16: strcpy(label, "ENV Dec"); break;
+    case 17: strcpy(label, "ENV Sus"); break;
+
+    case 18: strcpy(label, "ENV Rel"); break;
+    case 19: strcpy(label, "LFO Rate"); break;
+    case 20: strcpy(label, "Vibrato"); break;
 
     case 21: strcpy(label, "Noise"); break;
     case 22: strcpy(label, "Octave"); break;
     default: strcpy(label, "Tuning");
-	}
+  }
 }
 
 
 void mdaJX10::getParameterDisplay(int32_t index, char *text)
 {
-	char string[16];
-	float * param = programs[curProgram].param;
-  
+  char string[16];
+  float * param = programs[curProgram].param;
+
   switch(index)
   {
     case  0: sprintf(string, "%4.0f:%2.0f", 100.0-50.0f*param[index], 50.0f*param[index]); break;
     case  1: sprintf(string, "%.0f", semi); break;
-    case  2: sprintf(string, "%.1f", cent); break; 
+    case  2: sprintf(string, "%.1f", cent); break;
     case  3: switch(mode)
              { case  0:
                case  1: strcpy(string, "POLY    "); break;
                case  2: strcpy(string, "P-LEGATO"); break;
                case  3: strcpy(string, "P-GLIDE "); break;
-               case  4: 
+               case  4:
                case  5: strcpy(string, "MONO    "); break;
                case  6: strcpy(string, "M-LEGATO"); break;
                default: strcpy(string, "M-GLIDE "); break; } break;
     case  5: sprintf(string, "%.2f", glidedisp); break;
-    case  6: sprintf(string, "%.1f", 100.0f * param[index]); break; 
+    case  6: sprintf(string, "%.1f", 100.0f * param[index]); break;
     case  8:
     case 23: sprintf(string, "%.1f", 200.0f * param[index] - 100.0f); break;
     case 10: if(param[index]<0.05f) strcpy(string, "   OFF  ");
@@ -411,8 +411,8 @@ void mdaJX10::getParameterDisplay(int32_t index, char *text)
     case 22: sprintf(string, "%d", (int32_t)(param[index] * 4.9f) - 2); break;
     default: sprintf(string, "%.0f", 100.0f * param[index]);
   }
-	string[8] = 0;
-	strcpy(text, (char *)string);
+  string[8] = 0;
+  strcpy(text, (char *)string);
 }
 
 
@@ -420,11 +420,11 @@ void mdaJX10::getParameterLabel(int32_t index, char *label)
 {
   switch(index)
   {
-    case  1: 
+    case  1:
     case  5: strcpy(label, "   semi "); break;
-    case  2: 
+    case  2:
     case 23: strcpy(label, "   cent "); break;
-    case  3: 
+    case  3:
     case 22: strcpy(label, "        "); break;
     case 19: strcpy(label, "     Hz "); break;
     default: strcpy(label, "      % ");
@@ -433,9 +433,9 @@ void mdaJX10::getParameterLabel(int32_t index, char *label)
 
 void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFrames)
 {
-	float* out1 = outputs[0];
-	float* out2 = outputs[1];
-	int32_t frame=0, frames, v;
+  float* out1 = outputs[0];
+  float* out2 = outputs[1];
+  int32_t frame=0, frames, v;
   float o, e, vib, pwm, pb=pbend, ipb=ipbend, gl=glide;
   float x, y, hpf=0.997f, min=1.0f, w=0.0f, ww=noisemix;
   float ff, fe=filtenv, fq=filtq * rezwhl, fx=1.97f-0.85f*fq, fz=fzip;
@@ -450,7 +450,7 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
   LV2_Atom_Event* ev = lv2_atom_sequence_begin(&eventInput->body);
   bool end = lv2_atom_sequence_is_end(&eventInput->body, eventInput->atom.size, ev);
   if(activevoices>0 || !end)
-  {    
+  {
     while(frame<sampleFrames)
     {
       end = lv2_atom_sequence_is_end(&eventInput->body, eventInput->atom.size, ev);
@@ -462,7 +462,7 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
       {
         VOICE *V = voice;
         o = 0.0f;
-        
+
         noise = (noise * 196314165) + 907633515;
         r = (noise & 0x7FFFFF) + 0x40000000; //generate noise + fast convert to float
         w = *(float *)&r;
@@ -480,17 +480,17 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
         }
 
         for(v=0; v<NVOICES; v++)  //for each voice
-        { 
+        {
           e = V->env;
           if(e > SILENCE)
           { //Sinc-Loop Oscillator
             x = V->p + V->dp;
-            if(x > min) 
+            if(x > min)
             {
-              if(x > V->pmax) 
-              { 
-                x = V->pmax + V->pmax - x;  
-                V->dp = -V->dp; 
+              if(x > V->pmax)
+              {
+                x = V->pmax + V->pmax - x;
+                V->dp = -V->dp;
               }
               V->p = x;
               x = V->sin0 * V->sinx - V->sin1; //sine osc
@@ -499,8 +499,8 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
               x = x / V->p;
             }
             else
-            { 
-              V->p = x = - x;  
+            {
+              V->p = x = - x;
               V->dp = V->period * vib * pb; //set period for next cycle
               V->pmax = (float)floor(0.5f + V->dp) - 0.5f;
               V->dc = -0.5f * V->lev / V->pmax;
@@ -511,14 +511,14 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
               V->sinx = 2.0f * (float)cos(V->dp);
               if(x*x > .1f) x = V->sin0 / x; else x = V->lev; //was 0.01f;
             }
-            
+
             y = V->p2 + V->dp2; //osc2
-            if(y > min) 
-            { 
-              if(y > V->pmax2) 
-              { 
-                y = V->pmax2 + V->pmax2 - y;  
-                V->dp2 = -V->dp2; 
+            if(y > min)
+            {
+              if(y > V->pmax2)
+              {
+                y = V->pmax2 + V->pmax2 - y;
+                V->dp2 = -V->dp2;
               }
               V->p2 = y;
               y = V->sin02 * V->sinx2 - V->sin12;
@@ -528,7 +528,7 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
             }
             else
             {
-              V->p2 = y = - y;  
+              V->p2 = y = - y;
               V->dp2 = V->period * V->detune * pwm * pb;
               V->pmax2 = (float)floor(0.5f + V->dp2) - 0.5f;
               V->dc2 = -0.5f * V->lev2 / V->pmax2;
@@ -553,19 +553,19 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
               y = V->fc * (float)exp(fz + fe * V->fenv) * ipb; //filter cutoff
               if(y<0.005f) y=0.005f;
               V->ff = y;
- 
+
               V->period += gl * (V->target - V->period); //glide
               if(V->target < V->period) V->period += gl * (V->target - V->period);
             }
 
             if(V->ff > fx) V->ff = fx; //stability limit
-            
+
             V->f0 += V->ff * V->f1; //state-variable filter
             V->f1 -= V->ff * (V->f0 + fq * V->f1 - x - V->f2);
             V->f1 -= 0.2f * V->f1 * V->f1 * V->f1; //soft limit
 
             V->f2 = x;
-            
+
             o += V->env * V->f0;
           }
           V++;
@@ -581,7 +581,7 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
         ev = lv2_atom_sequence_next(ev);
       }
     }
-  
+
     activevoices = NVOICES;
     for(v=0; v<NVOICES; v++)
     {
@@ -595,11 +595,11 @@ void mdaJX10::processReplacing(float **inputs, float **outputs, int32_t sampleFr
   }
   else //empty block
   {
-		while(--sampleFrames >= 0)
-		{
-			*out1++ = 0.0f;
-			*out2++ = 0.0f;
-		}
+    while(--sampleFrames >= 0)
+    {
+      *out1++ = 0.0f;
+      *out2++ = 0.0f;
+    }
   }
   fzip = fz;
   K = k;
@@ -610,11 +610,11 @@ void mdaJX10::noteOn(int32_t note, int32_t velocity)
 {
   float p, l=100.0f; //louder than any envelope!
   int32_t  v=0, tmp, held=0;
-  
+
   if(velocity>0) //note on
   {
     if(veloff) velocity = 80;
-    
+
     if(mode & 4) //monophonic
     {
       if(voice[0].note > 0) //legato pitch change
@@ -633,19 +633,19 @@ void mdaJX10::noteOn(int32_t note, int32_t velocity)
         return;
       }
     }
-    else //polyphonic 
+    else //polyphonic
     {
       for(tmp=0; tmp<NVOICES; tmp++)  //replace quietest voice not in attack
       {
         if(voice[tmp].note > 0) held++;
         if(voice[tmp].env<l && voice[tmp].envl<2.0f) { l=voice[tmp].env;  v=tmp; }
       }
-    }  
+    }
     p = tune * (float)exp(-0.05776226505 * ((double)note + ANALOG * (double)v));
     while(p<3.0f || (p * detune)<3.0f) p += p;
     voice[v].target = p;
     voice[v].detune = detune;
-  
+
     tmp = 0;
     if(mode & 2)
     {
@@ -685,13 +685,13 @@ void mdaJX10::noteOn(int32_t note, int32_t velocity)
     }
     else
     {
-      //if(programs[curProgram].param[15] < 0.28f) 
+      //if(programs[curProgram].param[15] < 0.28f)
       //{
       //  voice[v].f0 = voice[v].f1 = voice[v].f2 = 0.0f; //reset filter
       //  voice[v].env = SILENCE + SILENCE;
       //  voice[v].fenv = 0.0f;
       //}
-      //else 
+      //else
         voice[v].env += SILENCE + SILENCE; //anti-glitching trick
     }
     voice[v].envl  = 2.0f;
@@ -703,7 +703,7 @@ void mdaJX10::noteOn(int32_t note, int32_t velocity)
   {
     if((mode & 4) && (voice[0].note==note)) //monophonic (and current note)
     {
-      for(v=(NVOICES-1); v>0; v--) 
+      for(v=(NVOICES-1); v>0; v--)
       {
         if(voice[v].note>0) held = v; //any other notes queued?
       }
@@ -711,7 +711,7 @@ void mdaJX10::noteOn(int32_t note, int32_t velocity)
       {
         voice[v].note = voice[held].note;
         voice[held].note = 0;
-        
+
         p = tune * (float)exp(-0.05776226505 * ((double)voice[v].note + ANALOG * (double)v));
         while(p<3.0f || (p * detune)<3.0f) p += p;
         voice[v].target = p;
@@ -752,7 +752,7 @@ int32_t mdaJX10::processEvent(const LV2_Atom_Event* ev)
       return 0;
 
   const uint8_t* midiData = (const uint8_t*)LV2_ATOM_BODY_CONST(&ev->body);
-		
+
     switch(midiData[0] & 0xf0) //status byte (all channels)
     {
       case 0x80: //note off
@@ -795,11 +795,11 @@ int32_t mdaJX10::processEvent(const LV2_Atom_Event* ev)
             break;
 
           default:  //all notes off
-            if(midiData[1]>0x7A) 
-            {  
-              for(int32_t v=0; v<NVOICES; v++) 
-              { 
-                voice[v].envl = voice[v].env = 0.0f; 
+            if(midiData[1]>0x7A)
+            {
+              for(int32_t v=0; v<NVOICES; v++)
+              {
+                voice[v].envl = voice[v].env = 0.0f;
                 voice[v].envd = 0.99f;
                 voice[v].note = 0;
                 //could probably reset some more stuff here for safety!
@@ -817,15 +817,15 @@ int32_t mdaJX10::processEvent(const LV2_Atom_Event* ev)
       case 0xD0: //channel aftertouch
         press = 0.00001f * (float)(midiData[1] * midiData[1]);
         break;
-      
+
       case 0xE0: //pitch bend
         ipbend = (float)exp(0.000014102 * (double)(midiData[1] + 128 * midiData[2] - 8192));
         pbend = 1.0f / ipbend;
         break;
-      
+
       default: break;
     }
 
-	return 1;
+  return 1;
 }
 
