@@ -1,0 +1,4 @@
+.lock-waf_linux_build
+.waf3-*/
+build/
+
