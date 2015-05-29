@@ -159,62 +159,22 @@ mdaJX10::mdaJX10(audioMasterCallback audioMaster) : AudioEffectX(audioMaster, NP
   lfo = modwhl = filtwhl = press = fzip = 0.0f;
   rezwhl = pbend = ipbend = 1.0f;
   volume = 0.0005f;
-  K = mode = lastnote = sustain = activevoices = 0;
+  K = lastnote = sustain = activevoices = 0;
   noise = 22222;
 
-  update();
+  for (int32_t i = 0; i < NPARAMS; ++i) {
+    setParameter(i, programs[curProgram].param[i]);
+  }
   suspend();
 }
 
 
 void mdaJX10::update()  //parameter change
 {
-  double ifs = 1.0 / Fs;
-  float * param = programs[curProgram].param;
-
-  mode = (int32_t)(7.9f * param[3]);
-  noisemix = param[21] * param[21];
-  voltrim = (3.2f - param[0] - 1.5f * noisemix) * (1.5f - 0.5f * param[7]);
-  noisemix *= 0.06f;
-  oscmix = param[0];
-
-  semi = (float)floor(48.0f * param[1]) - 24.0f;
-  cent = 15.876f * param[2] - 7.938f;
-  cent = 0.1f * (float)floor(cent * cent * cent);
+  voltrim = (3.2f - oscmix - 1.5f * (noisemix * 16.66667)) * (1.5f - 0.5f * reso);
   detune = (float)pow(1.059463094359f, - semi - 0.01f * cent);
-  tune = -23.376f - 2.0f * param[23] - 12.0f * (float)floor(param[22] * 4.9);
+  tune = -23.376f - 2.0f * tuning - 12.0f * (float)floor(octave * 4.9);
   tune = Fs * (float)pow(1.059463094359f, tune);
-
-  vibrato = pwmdep = 0.2f * (param[20] - 0.5f) * (param[20] - 0.5f);
-  if(param[20]<0.5f) vibrato = 0.0f;
-
-  lfoHz = (float)exp(7.0f * param[19] - 4.0f);
-  dlfo = lfoHz * (float)(ifs * TWOPI * KMAX);
-
-  filtf = 8.0f * param[6] - 1.5f;
-  filtq  = (1.0f - param[7]) * (1.0f - param[7]); ////// + 0.02f;
-  filtlfo = 2.5f * param[9] * param[9];
-  filtenv = 12.0f * param[8] - 6.0f;
-  filtvel = 0.1f * param[10] - 0.05f;
-  if(param[10]<0.05f) { veloff = 1; filtvel = 0; } else veloff = 0;
-
-  att = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * param[15]));
-  dec = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * param[16]));
-  sus = param[17];
-  rel = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * param[18]));
-  if(param[18]<0.01f) rel = 0.1f; //extra fast release
-
-  ifs *= KMAX; //lower update rate...
-
-  fatt = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * param[11]));
-  fdec = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * param[12]));
-  fsus = param[13] * param[13];
-  frel = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * param[14]));
-
-  if(param[4]<0.02f) glide = 1.0f; else
-  glide = 1.0f - (float)exp(-ifs * exp(6.0 - 7.0 * param[4]));
-  glidedisp = (6.604f * param[5] - 3.302f);
-  glidedisp *= glidedisp * glidedisp;
 }
 
 
@@ -254,24 +214,135 @@ mdaJX10::~mdaJX10()  //destroy any buffers...
 void mdaJX10::setProgram(int32_t program)
 {
   curProgram = program;
-    update();
+  for (int32_t i = 0; i < NPARAMS; ++i) {
+    setParameter(i, programs[curProgram].param[i]);
+  }
 } //may want all notes off here - but this stops use of patches as snapshots!
 
 
 void mdaJX10::setParameter(int32_t index, float value)
 {
+  double ifs = 1.0 / Fs;
+  bool needs_update = false;
   programs[curProgram].param[index] = value;
-  update();
 
+  switch ((ParamIndex)index) {
+  case OSC_MIX:
+    oscmix = value;
+    needs_update = true;
+    break;
+  case OSC_TUNE:
+    semi = (float)floor(48.0f * value) - 24.0f;
+    needs_update = true;
+    break;
+  case OSC_FINE:
+    cent = 15.876f * value - 7.938f;
+    cent = 0.1f * (float)floor(cent * cent * cent);
+    needs_update = true;
+    break;
+  case GLIDE:
+    mode = (int32_t)(7.9f * value);
+    break;
+  case GLD_RATE:
+    if (value < 0.02f)
+      glide = 1.0f;
+    else
+      glide = 1.0f - (float)exp(-(ifs * KMAX) * exp(6.0 - 7.0 * value));
+
+    break;
+  case GLD_BEND:
+    glidedisp = (6.604f * value - 3.302f);
+    glidedisp *= glidedisp * glidedisp;
+    break;
+  case VCF_FREQ:
+    filtf = 8.0f * value - 1.5f;
+    break;
+  case VCF_RESO:
+    reso = value;
+    filtq  = (1.0f - reso) * (1.0f - reso); ////// + 0.02f;
+    needs_update = true;
+    break;
+  case VCF_ENV:
+    filtenv = 12.0f * value - 6.0f;
+    break;
+  case VCF_LFO:
+    filtlfo = 2.5f * value * value;
+    break;
+  case VCF_VEL:
+    filtvel = 0.1f * value - 0.05f;
+
+    if (value < 0.05f)
+    {
+      veloff = 1;
+      filtvel = 0;
+    }
+    else
+      veloff = 0;
+
+    break;
+  case VCF_ATT:
+    fatt = 1.0f - (float)exp(-(ifs * KMAX) * exp(5.5 - 7.5 * value));
+    break;
+  case VCF_DEC:
+    fdec = 1.0f - (float)exp(-(ifs * KMAX) * exp(5.5 - 7.5 * value));
+    break;
+  case VCF_SUS:
+    fsus = value * value;
+    break;
+  case VCF_REL:
+    frel = 1.0f - (float)exp(-(ifs * KMAX) * exp(5.5 - 7.5 * value));
+    break;
+  case ENV_ATT:
+    att = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * value));
+    break;
+  case ENV_DEC:
+    dec = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * value));
+    break;
+  case ENV_SUS:
+    sus = value;
+    break;
+  case ENV_REL:
+    rel = 1.0f - (float)exp(-ifs * exp(5.5 - 7.5 * value));
+
+    if (value < 0.01f)
+      rel = 0.1f; // extra fast release
+
+    break;
+  case LFO_RATE:
+    lfoHz = (float)exp(7.0f * value - 4.0f);
+    dlfo = lfoHz * (float)(ifs * TWOPI * KMAX);
+    break;
+  case VIBRATO:
+    vibrato = pwmdep = 0.2f * (value - 0.5f) * (value - 0.5f);
+
+    if (value < 0.5f)
+      vibrato = 0.0f;
+
+    break;
+  case NOISE:
+    noisemix = value * value * 0.06f;
+    needs_update = true;
+    break;
+  case OCTAVE:
+    octave = value;
+    needs_update = true;
+    break;
+  case TUNING:
+    tuning = value;
+    needs_update = true;
+    break;
+  }
+
+  if (needs_update) update();
   ///if(editor) editor->postUpdate();
 }
 
 
 void mdaJX10::fillpatch(int32_t p, const char *name,
-                      float p0,  float p1,  float p2,  float p3,  float p4,  float p5,
-                      float p6,  float p7,  float p8,  float p9,  float p10, float p11,
-                      float p12, float p13, float p14, float p15, float p16, float p17,
-                      float p18, float p19, float p20, float p21, float p22, float p23)
+                        float p0,  float p1,  float p2,  float p3,  float p4,  float p5,
+                        float p6,  float p7,  float p8,  float p9,  float p10, float p11,
+                        float p12, float p13, float p14, float p15, float p16, float p17,
+                        float p18, float p19, float p20, float p21, float p22, float p23)
 {
   strcpy(programs[p].name, name);
   programs[p].param[0]  = p0;   programs[p].param[1]  = p1;
