@@ -162,9 +162,6 @@ mdaJX10::mdaJX10(audioMasterCallback audioMaster) : AudioEffectX(audioMaster, NP
   K = lastnote = sustain = activevoices = 0;
   noise = 22222;
 
-  for (int32_t i = 0; i < NPARAMS; ++i) {
-    setParameter(i, programs[curProgram].param[i]);
-  }
   suspend();
 }
 
@@ -224,7 +221,7 @@ void mdaJX10::setParameter(int32_t index, float value)
 {
   double ifs = 1.0 / Fs;
   bool needs_update = false;
-  programs[curProgram].param[index] = value;
+  // programs[curProgram].param[index] = value;
 
   switch ((ParamIndex)index) {
   case OSC_MIX:
